@@ -1,5 +1,5 @@
 """
-URL configuration for expenseswebsite project.
+URL configuration for core project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -20,5 +20,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("", include("expenses.urls")),
+    path("authentication/", include("authentication.urls")),
     path("admin/", admin.site.urls),
 ]
