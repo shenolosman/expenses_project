@@ -10,7 +10,10 @@
                 <h4 class="text-center py-2">Register Account</h4>
             </div>
             <div class="card-body">
-                <form action="" method="post">
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    {% include 'partials/_messages.html' %}
+
                     <div class="form-group py-2">
                         <input type="username" name="username" id="usernameField" class="form-control form-control-sm"
                             placeholder="Username" required>
@@ -28,7 +31,7 @@
                     <div class="form-group py-2 d-flex ">
                         <input type="password" name="password" id="passwordField"
                             class="form-control form-control-sm justify-content-start" placeholder="Password" required>
-                        <small class="py-2 justify-content-end" id="showPasswordToggle">SHOW</small>
+                        <small class="py-2 justify-content-end showPasswordToggle" id="showPasswordToggle">Show</small>
                     </div>
                     <div class="password-error invalid-feedback" style="display:none">
 

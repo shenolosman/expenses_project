@@ -5,11 +5,17 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-
+from django.contrib import messages
 
 # Create your views here.
 class RegistrationView(View):
     def get(self, request):
+        return render(request, "authentication/register.html")
+    def post(self, request):
+        messages.success(request, "Account created successfully")
+        messages.warning(request, "Account created warning")
+        messages.info(request, "Account created info")
+        messages.error(request, "Account created error")
         return render(request, "authentication/register.html")
 
 
