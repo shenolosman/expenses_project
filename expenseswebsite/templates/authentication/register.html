@@ -1,10 +1,50 @@
 {% extends 'base_auth.html' %}
+{% load static %}
 {% block content %}
 
-<div class="card">
-    <div class="card-body">
-        <h1 class="text-center"> lorem </h1>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <div class="card-title">
+                <h4 class="text-center py-2">Register Account</h4>
+            </div>
+            <div class="card-body">
+                <form action="" method="post">
+                    <div class="form-group py-2">
+                        <input type="username" name="username" id="usernameField" class="form-control form-control-sm"
+                            placeholder="Username" required>
+                    </div>
+                    <div class="username-error invalid-feedback" style="display:none">
+
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="email" name="email" id="emailField" class="form-control form-control-sm"
+                            placeholder="Email" required>
+                    </div>
+                    <div class="email-error invalid-feedback" style="display:none">
+
+                    </div>
+                    <div class="form-group py-2 d-flex ">
+                        <input type="password" name="password" id="passwordField"
+                            class="form-control form-control-sm justify-content-start" placeholder="Password" required>
+                        <small class="py-2 justify-content-end" id="showPasswordToggle">SHOW</small>
+                    </div>
+                    <div class="password-error invalid-feedback" style="display:none">
+
+                    </div>
+                    <div class="d-grid gap-2 mx-auto ">
+                        <input type="submit" value="Register" class="btn btn-outline-primary">
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+<div class="col-md-4"></div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %}
