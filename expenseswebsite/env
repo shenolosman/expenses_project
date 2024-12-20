@@ -4,3 +4,9 @@ DB_PASSWORD=password
 DB_HOST=localhost
 DB_PORT=5432
 SECRET_KEY=your_secret_key
+
+
+EMAIL_HOST=smtp.gmail.com # or whatever your email provider is
+EMAIL_HOST_USER=your_email
+EMAIL_FROM_EMAIL=your_email
+EMAIL_HOST_PASSWORD=your_password # if you use gmail you should generate an app password
