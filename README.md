@@ -21,3 +21,6 @@
 - users.is_active => bool
 - quit()
 --------------------
+
+### https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+- manage.py check --deploy
