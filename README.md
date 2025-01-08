@@ -8,6 +8,9 @@
 - pipenv shell => to get in virtual env
 - expenseswebsite, py manage.py runserver
 
+- py .\manage.py startapp userprefences => to create new module
+- py manage.py makemigrations => create migration file for sql
+- py manage.py migrate => migrates to sql server
 - python manage.py createsuperuser => to create admin users
 - py.exe .\manage.py merge => to merge things
 -----------------
@@ -24,3 +27,8 @@
 
 ### https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 - manage.py check --deploy
+
+
+-------------------------   
+- import pdb 
+- pdb.set_trace() => helps to debugs in console ["can be written any of variable in that file that trace defined"]
