@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.utils.timezone import now
 from .models import Category, Expense
 from django.contrib import messages
 
@@ -40,7 +41,8 @@ def add_expenses(request):
             return render(request, "expenses/add_expenses.html", context)
 
         date = request.POST["date"]
-
+        if not date:
+            date = now()
         Expense.objects.create(
             owner=request.user,
             amount=amount,
@@ -52,17 +54,40 @@ def add_expenses(request):
 
         return redirect("expenses")
 
+
 def expense_edit(request, id):
-    expense= Expense.objects.get(pk=id)
-    context = {"expense": expense, "values": expense}
-    
+    expense = Expense.objects.get(pk=id)
+    categories = Category.objects.all()
+    context = {"expense": expense, "values": expense, "categories": categories}
+
     if request.method == "GET":
         return render(request, "expenses/edit-expense.html", context)
     else:
-        messages.info(request, "Expense updated successfully")
-        return render(request, "expenses/edit-expense.html", context)       
+        amount = request.POST["amount"]
+        description = request.POST["description"]
+        category = request.POST["category"]
+        date = request.POST["date"]
+        if not amount:
+            messages.error(request, "Amount is required")
+            return render(request, "expenses/edit-expense.html", context)
+
+        if not description:
+            messages.error(request, "Description is required")
+            return render(request, "expenses/edit-expense.html", context)
+
+        expense.amount = amount
+        expense.description = description
+        expense.category = category
+        expense.date = date
+        expense.owner = request.user
+        expense.save()
         
+        messages.success(request, "Expense updated successfully")
+        return redirect("expenses")
+
 
 def expense_delete(request, id):
-    expense= Expense.objects.get(pk=id)    
-    return render(request, "expenses/delete-expense.html")
+    expense = Expense.objects.get(pk=id)
+    expense.delete()
+    messages.success(request, "Expense removed")
+    return redirect("expenses")

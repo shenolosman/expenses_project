@@ -2,6 +2,7 @@
 {% block content %}
 
 <div class="container my-3 mt-3">
+    {% include 'partials/_messages.html' %}
     <div class="row">
         <div class="col-md-9">
             <nav aria-label="breadcrumb">
@@ -43,7 +44,4 @@
         </tbody>
     </table>
 </div>
-
-{% include 'partials/_messages.html' %}
-
 {% endblock %}

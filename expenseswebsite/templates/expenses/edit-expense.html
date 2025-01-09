@@ -4,14 +4,19 @@
 
 <div class="container my-3 mt-3">
     <div class="row">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Expense</li>
-            </ol>
-        </nav>
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Expense</li>
+                </ol>
+            </nav>
+        </div>
 
-        <form action="{% url 'edit-expenses' %}" method="post">
+        <div class="col-md-2">
+            <a href="{% url 'expense-delete' expense.id %}" class="btn btn-danger">Delete</a>
+        </div>
+        <form action="{% url 'expense-edit' expense.id %}" method="post">
             {% include 'partials/_messages.html' %}
             {% csrf_token %}
             <div class="card">
@@ -41,12 +46,13 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default">Date of expense</span>
-                        <input type="date" class="form-control" name="date" aria-label="Sizing example input" value="{{ values.date }}"
-                            aria-describedby="inputGroup-sizing-default">
+                        <input type="date" class="form-control" name="date" aria-label="Sizing example input"
+                            value="{{ values.date|date:'Y.m.d' }}" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="d-grid gap-2">
                         <input type="submit" value="Save" class="btn btn-primary">
                     </div>
+
                 </div>
             </div>
         </form>
