@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.timezone import now
 from .models import Category, Expense
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -10,7 +11,11 @@ from django.contrib import messages
 @login_required(login_url="/authentication/login")
 def index(request):
     expenses = Expense.objects.filter(owner=request.user)
-    context = {"expenses": expenses}
+    paginator = Paginator(expenses, 3)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    categories = Category.objects.all()
+    context = {"expenses": expenses, "page_obj": page_obj, "categories": categories}
 
     return render(request, "expenses/index.html", context)
 
@@ -81,7 +86,7 @@ def expense_edit(request, id):
         expense.date = date
         expense.owner = request.user
         expense.save()
-        
+
         messages.success(request, "Expense updated successfully")
         return redirect("expenses")
 
