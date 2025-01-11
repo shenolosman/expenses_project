@@ -23,6 +23,8 @@ def index(request):
         user_preferences = UserPreferences.objects.get(user=request.user)
 
     if request.method == "GET":
+        # import pdb
+        # pdb.set_trace()
         return render(request, "preferences/index.html", {"currencies": currency_data, "user_preferences": user_preferences})
     else:
         currency = request.POST["currency"]
