@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-3 mt-3">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'incomes' %}">Incomes</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Incomes</li>
+            </ol>
+        </nav>
+
+        <form action="{% url 'add-income' %}" method="post">
+            {% include 'partials/_messages.html' %}
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
+                        <input type="number" class="form-control" name="amount" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" value="{{ values.amount}}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+                        <input type="text" class="form-control" name="description" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" value="{{ values.description}}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Source</label>
+                        <select class="form-select" name="source" id="inputGroupSelect01">
+                            {% if values.source %}
+                            <option selected value="{{ values.source }}">{{ values.source }}</option>
+                            {% else %}
+                            <option selected>Choose...</option>
+                            {% endif %}
+                            {% for source in sources %}
+                            <option name="source" value="{{ source.name }}">{{ source.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Date of expense</span>
+                        <input type="date" class="form-control" name="date" aria-label="Sizing example input" value="{{ values.date}}"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <input type="submit" value="Add" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
