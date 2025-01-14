@@ -1,0 +1,13 @@
+{% extends 'admin/login.html' %}
+
+{% load static %}
+
+{% block title %}{{ title }} | Django Expenses{% endblock %}
+
+{% block branding %}
+<h1 id="header">Backend Login</h1>
+{% endblock %}
+
+{% block extra_style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}" />
+{% endblock %}
