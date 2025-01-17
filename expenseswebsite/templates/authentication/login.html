@@ -17,12 +17,12 @@
 
                     <div class="form-group py-2">
                         <input type="username" name="username" id="usernameField" class="form-control form-control-sm"
-                            placeholder="Username" >
+                            placeholder="Username">
                     </div>
 
                     <div class="form-group py-2 d-flex ">
                         <input type="password" name="password" id="passwordField"
-                            class="form-control form-control-sm justify-content-start" placeholder="Password" >
+                            class="form-control form-control-sm justify-content-start" placeholder="Password">
                         <small class="py-2 justify-content-end showPasswordToggle" id="showPasswordToggle">Show</small>
                     </div>
                     <div class="password-error invalid-feedback" style="display:none">
@@ -34,6 +34,11 @@
 
                 </form>
             </div>
+            <div class="container card-footer text-center">
+                <span>Dont have an account? <a href="{% url 'register' %}">Register</a></span>
+                <span>Forgot Password? <a href="{% url 'reset-password' %}">Reset Password</a></span>
+            </div>
+
         </div>
     </div>
 </div>
