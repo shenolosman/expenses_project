@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 import json
 from django.http import JsonResponse
 from userpreferences.models import UserPreferences
+import datetime
 
 # Create your views here.
 
@@ -122,3 +123,40 @@ def expense_delete(request, id):
     expense.delete()
     messages.success(request, "Expense removed")
     return redirect("expenses")
+
+
+def expense_category_summary(request):
+    today_date = datetime.date.today()
+    six_months_ago = today_date - datetime.timedelta(days=30 * 6)
+    # three_months_ago = today_date - datetime.timedelta(days=30 * 3)
+    # if category == "all":
+    #     expenses = Expense.objects.filter(owner=request.user)
+    # else:
+    #     expenses = Expense.objects.filter(category=category, owner=request.user)
+    expenses = Expense.objects.filter(
+        owner=request.user, date__gte=six_months_ago, date__lte=today_date
+    )
+    # expenses = expenses.filter(date__lte=three_months_ago)
+    finalrep = {}
+
+    def get_category(expense):
+        return expense.category
+
+    category_list = list(set(map(get_category, expenses)))
+
+    def get_expense_category_amount(category):
+        amount = 0
+        filtered_by_category = expenses.filter(category=category)
+        for item in filtered_by_category:
+            amount += item.amount
+        return amount
+
+    for x in expenses:
+        for y in category_list:
+            finalrep[y] = get_expense_category_amount(y)
+
+    return JsonResponse({"category_data": finalrep}, safe=False)
+    # return render(request, "expenses/category_summary.html", {"finalrep": finalrep})
+
+    # expenses = Expense.objects.filter(category=category, owner=request.user)
+    # return render(request, "expenses/category_summary.html", {"expenses": expenses})
