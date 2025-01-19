@@ -19,10 +19,19 @@
 </div>
 <div class="container">
     {% include 'partials/_messages.html' %}
-    <div class="mb-3 col-md-3">
-        <input type="text" class="form-control" name="search" placeholder="Search expenses" aria-label="Search expenses"
-            aria-describedby="button-addon2" id="searchExpenses">
+    <div class="row">
+
+        <div class="col-md-9">
+            <a href="{% url 'export-pdf' %}" class="btn btn-dark">Export PDF</a>
+            <a href="{% url 'export-excel' %}" class="btn btn-dark">Export Excel</a>
+            <a href="{% url 'export-csv' %}" class="btn btn-dark">Export CSV</a>
+        </div>
+        <div class="mb-3 col-md-3">
+            <input type="text" class="form-control" name="search" placeholder="Search expenses"
+                aria-label="Search expenses" aria-describedby="button-addon2" id="searchExpenses">
+        </div>
     </div>
+
     <div class="list-table">
         <table class="table table-striped table-hover">
             <thead>

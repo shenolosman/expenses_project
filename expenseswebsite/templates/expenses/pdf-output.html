@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pdf Output</title>
+</head>
+<style>
+    @page {
+        margin: 2.5cm 1cm 2.5cm 1cm;
+        size: "A4";
+        orphans: 0;
+        widows: 0;
+
+        @top-center {
+            content: element(header);
+        }
+
+        @bottom-center {
+            content: "Page " counter(page) " of " counter(pages);
+        }
+
+
+    }
+</style>
+
+<body>
+    <h1>Expenses</h1>
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.date }}</td>
+                <td>{{ expense.description }}</td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="5">Total: {{ total }}</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
