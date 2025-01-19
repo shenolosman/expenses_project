@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
     <title>Django Expenses
         {% block title %}{% endblock %}
     </title>
@@ -14,13 +15,13 @@
 <body>
     {% include 'partials/_navbar.html' %}
 
-            {% include 'partials/_sidebar.html' %}
+    {% include 'partials/_sidebar.html' %}
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                {% block content %}
-                
-                {% endblock %}
-            </main>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        {% block content %}
+
+        {% endblock %}
+    </main>
 
     {% include 'partials/_jsfile.html' %}
 </body>

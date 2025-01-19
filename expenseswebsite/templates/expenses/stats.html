@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container my-3 mt-3">
+    <div class="row">
+        <div class="col-md-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Summary</li>
+                </ol>
+            </nav>
+
+        </div>
+        <!-- <div class="col-md-3">
+            <a href="{% url 'add-expenses' %}" class="btn btn-primary">Add Expenses</a>
+        </div> -->
+    </div>
+</div>
+<div class="container">
+    {% include 'partials/_messages.html' %}
+    <div class="mb-3 col-md-3">
+        <input type="text" class="form-control" name="search" placeholder="Search expenses" aria-label="Search expenses"
+            aria-describedby="button-addon2" id="searchExpenses">
+    </div>
+    <canvas id="summaryChart"></canvas>
+</div>
+<script src="{% static 'js/stats.js' %}"></script>
+{% endblock %}

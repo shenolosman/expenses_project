@@ -160,3 +160,7 @@ def expense_category_summary(request):
 
     # expenses = Expense.objects.filter(category=category, owner=request.user)
     # return render(request, "expenses/category_summary.html", {"expenses": expenses})
+
+
+def stats_view(request):
+    return render(request, "expenses/stats.html")
